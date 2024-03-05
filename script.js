@@ -21,7 +21,7 @@ function createMessage(message, className) {
 }
 async function generateResponse(incomingMessageLi) {
 	const API_URL = "https://api.openai.com/v1/chat/completions";
-	const API_KEY = "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";
+	const API_KEY = "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";
 
 	const messageElement = incomingMessageLi.querySelector("p");
 
@@ -49,11 +49,20 @@ async function generateResponse(incomingMessageLi) {
 			messageElement.textContent = data.choices[0].message.content;
 		} else {
 			console.error("Error:", data);
-			messageElement.textContent = data.error.message;
+			messageElement.innerHTML =
+				data.error.message +
+				" " +
+				"<br><strong class='errorMessage'>OpenAI'a ödeme yapmadığım için 'kota yetersiz' hatası geliyor. Düzgün kullanamayacağınız için üzgünüm.</strong>";
 		}
 	} catch (error) {
 		console.error("Error:", error);
+	} finally {
+		autoScroll();
 	}
+}
+
+function autoScroll() {
+	chatBox.scrollTo(0, chatBox.scrollHeight);
 }
 
 function handleChat() {
@@ -62,12 +71,15 @@ function handleChat() {
 		return;
 	}
 
+	autoScroll();
+
 	const outgoingMessageLi = createMessage(userMessage, "outgoing");
 	addMessage(outgoingMessageLi);
 
 	setTimeout(() => {
 		const incomingMessageLi = createMessage("Typing...", "incoming");
 		addMessage(incomingMessageLi);
+		autoScroll();
 		generateResponse(incomingMessageLi);
 	}, 500);
 }
