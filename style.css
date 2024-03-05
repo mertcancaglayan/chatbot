@@ -118,7 +118,6 @@ body {
 }
 
 .chatInput {
-	position: absolute;
 	display: flex;
 	align-items: center;
 	width: 100%;
@@ -228,4 +227,8 @@ body {
     .chatbox {
         height: 90%;
     }
+}
+
+.errorMessage {
+	color: red;
 }
