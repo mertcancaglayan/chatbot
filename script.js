@@ -1,6 +1,9 @@
 const sendBtn = document.querySelector("#sendBtn");
 const chatInput = document.querySelector(".chatInput textarea");
 const chatBox = document.querySelector(".chatbox");
+const bodyElement = document.querySelector("body");
+const toggleBtn = document.querySelector(".toggleContainer");
+const closeBtn = document.querySelector(".closeBtn");
 
 let userMessage;
 
@@ -21,7 +24,7 @@ function createMessage(message, className) {
 }
 async function generateResponse(incomingMessageLi) {
 	const API_URL = "https://api.openai.com/v1/chat/completions";
-	const API_KEY = "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";
+	const API_KEY = "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";
 
 	const messageElement = incomingMessageLi.querySelector("p");
 
@@ -82,6 +85,27 @@ function handleChat() {
 		autoScroll();
 		generateResponse(incomingMessageLi);
 	}, 500);
+	chatInput.value = ""
 }
 
+let chatActive = true;
+
+function showChat() {
+	if (!chatActive) {
+		bodyElement.classList.add("showChatBot");
+		chatActive = true;
+	} else {
+		bodyElement.classList.remove("showChatBot");
+		chatActive = false;
+	}
+}
+
+chatInput.addEventListener("keypress", function(event) {
+	if (event.key === "Enter") {
+	  event.preventDefault();
+	  handleChat()
+	}
+  });
 sendBtn.addEventListener("click", handleChat);
+toggleBtn.addEventListener("click", showChat);
+closeBtn.addEventListener("click", showChat);

@@ -28,13 +28,15 @@ body {
 	width: 27rem;
 	background-color: var(--charcoal-gray);
 	border-radius: 0.9rem;
-	-webkit-box-shadow: -9px -6px 24px -9px rgba(219, 208, 219, 1);
-	-moz-box-shadow: -9px -6px 24px -9px rgba(219, 208, 219, 1);
-	box-shadow: -9px -6px 24px -9px rgba(219, 208, 219, 1);
+	-webkit-box-shadow: -4px 2px 16px 0px rgba(122,118,122,1);
+	-moz-box-shadow: -4px 2px 16px 0px rgba(122,118,122,1);
+	box-shadow: -4px 2px 16px 0px rgba(122,118,122,1);
 	overflow: hidden;
 	transform: scale(0.5);
 	opacity: 0;
 	pointer-events: none;
+	transition: 0.5s;
+	transform-origin: bottom right;
 }
 
 .showChatBot .chatbotContainer {
@@ -64,6 +66,7 @@ body {
     transform: translateY(-50%);
     right: 1rem;
 	transition: 0.3s;
+	cursor: pointer;
 }
 .chatbotContainer header .closeBtn:hover {
 	background-color: var(--dark-slate);
@@ -191,14 +194,7 @@ body {
 	position: fixed;
 	right: 2.5rem;
 	bottom: 2.2rem;
-}
-
-.toggleContainer button {
-	border-radius: 1rem;
-	border: none;
 	padding: 0.5rem;
-	transition: 0.3s ease;
-	background-color: var(--midnight-blue);
 	cursor: pointer;
 }
 
@@ -207,11 +203,9 @@ body {
 	color: var(--text-color);
 }
 
-.toggleContainer button:hover {
+.toggleContainer:hover {
 	background-color: #355e3b;
 	border-radius: 1rem;
-	border: none;
-	padding: 0.5rem;
 }
 
 
